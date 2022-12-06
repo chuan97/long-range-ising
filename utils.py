@@ -21,3 +21,30 @@ def truncate_dicke(ws, lams, M):
     lams_truncated = np.array([vect for i, vect in enumerate(lams.T) if len(ws) - i <= M]).T
     
     return ws_truncated, lams_truncated
+
+def critical_point_recursive_refinement(f_order_parameter, critical_parameter, other_args, rounds=3, *, verbose=False):
+    L = len(critical_parameter)
+    
+    if rounds == 0:
+        return critical_parameter[L//2]
+    
+    else:
+        op = f_order_parameter(critical_parameter, *other_args)
+        rel_diff = (op[1:] - op[:-1]) / op[:-1]
+        idx = np.argmax(rel_diff)
+        cp = critical_parameter[idx]
+        
+        if verbose:
+            print(f'Rounds to go: {rounds - 1}, current critical point:  {cp} ...')
+
+        new_range = min(idx, len(critical_parameter) - idx) // 2
+        range_min = critical_parameter[idx - new_range]
+        range_max = critical_parameter[idx + new_range]
+        step = (cp - range_min) / (L // 2)
+        
+        if step == 0:
+            return cp
+        
+        new_critical_parameter = np.arange(range_min, range_max, step)
+        
+        return critical_point_recursive_refinement(f_order_parameter, new_critical_parameter, other_args, rounds - 1, verbose=verbose)

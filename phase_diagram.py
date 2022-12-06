@@ -11,11 +11,11 @@ import algo
 
 N = 70
 M = int(np.sqrt(N) * np.log(N))
-Ts = np.linspace(0.1, 1.5, 30)
+Ts = np.linspace(0.05, 1.4, 100)
 betas = 1 / Ts
 wz = 1
-J0s = np.linspace(0.05, 0.5, 30)
-alphas = np.linspace(0.3, 0.99, 10)
+J0s = np.linspace(0.1, 0.65, 100)
+alphas = np.linspace(0.3, 0.99, 20)
 gs = 0.0 * np.ones(N)
 dg = 5e-3 * wz
 i = 0

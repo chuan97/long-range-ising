@@ -11,7 +11,7 @@ import algo
 
 N = 70
 M = int(np.sqrt(N) * np.log(N))
-Ts = np.linspace(0.05, 1.4, 100)
+Ts = np.linspace(0.02, 1.4, 100)
 betas = 1 / Ts
 wz = 1
 J0s = np.linspace(0.1, 0.65, 100)

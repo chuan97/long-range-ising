@@ -22,22 +22,21 @@ def truncate_dicke(ws, lams, M):
     
     return ws_truncated, lams_truncated
 
-def critical_point_recursive_refinement(f_order_parameter, critical_parameter, other_args, rounds=3, *, verbose=False):
+def critical_point_recursive_refinement(f_order_parameter, critical_parameter, other_args, rounds=2, *, verbose=False):
     L = len(critical_parameter)
+    op = f_order_parameter(critical_parameter, *other_args)
+    rel_diff = (op[1:] - op[:-1]) #/ op[:-1]
+    idx = np.argmax(rel_diff)
+    cp = critical_parameter[idx]
     
-    if rounds == 0:
-        return critical_parameter[L//2]
+    if rounds == 1:
+        return cp
     
     else:
-        op = f_order_parameter(critical_parameter, *other_args)
-        rel_diff = (op[1:] - op[:-1]) / op[:-1]
-        idx = np.argmax(rel_diff)
-        cp = critical_parameter[idx]
-        
         if verbose:
             print(f'Rounds to go: {rounds - 1}, current critical point:  {cp} ...')
 
-        new_range = min(idx, len(critical_parameter) - idx) // 2
+        new_range = min(idx, L - idx) // 2
         range_min = critical_parameter[idx - new_range]
         range_max = critical_parameter[idx + new_range]
         step = (cp - range_min) / (L // 2)

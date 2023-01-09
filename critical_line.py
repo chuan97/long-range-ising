@@ -10,7 +10,6 @@ N = 70
 #M = int(np.sqrt(N) * np.log(N))
 M = N
 wz = 1
-
 Ts = np.linspace(0.01, 1.4, 52)
 betas = 1/Ts
 J0s = np.linspace(0.1, 1.0, 30)

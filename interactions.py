@@ -10,12 +10,17 @@ def powerlaw_pbc(N, alpha):
             
     return J
 
-def shift(J, epsilon):
+def shift(J, epsilon, *, return_shift=False):
     vals = eigh(J, eigvals_only=True)
-    return J - np.eye(J.shape[0]) * (vals[0] - epsilon)
+    b = vals[0] - epsilon
+    if return_shift:
+        return J - np.eye(J.shape[0]) * b, b
+    return J - np.eye(J.shape[0]) * b
 
-def rescale(J):
+def rescale(J, *, return_scale=False):
     S = np.sum(np.abs(J[0]))
+    if return_scale:
+        return J/S, S
     return J / S
 
 def powerlaw_obc_2D(L, alpha):

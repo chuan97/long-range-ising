@@ -26,12 +26,12 @@ for i, alpha in enumerate(alphas):
 
     vals = eigh(Jbase, eigvals_only=True)
     #if j == 0:
-    ax.plot(np.arange(1, len(vals) + 1) / N, vals, c=colors[0], lw=0, marker='o') 
+    ax.plot(np.arange(1, len(vals) + 1) / N, vals[::-1], c=colors[0], lw=0, marker='o') 
     ax.axhline(0, lw=0.5, c='k')
     
     if i == 0:
         #ax.legend(frameon=False, title=r'$N$')
-        ax.set_ylabel('Eigenvalue ' + r'$(D_k)$')
+        ax.set_ylabel('Eigenvalue ' + r'$(D_k / \Gamma)$')
     if i == 1:
         ax.set_yticklabels([])
         
@@ -59,7 +59,7 @@ for i, alpha in enumerate(alphas):
         ax.set_ylabel('Probability density')
     if i == 1:
         ax.set_yticklabels([])
-    ax.set_xlabel('Eigenvalue')
+    ax.set_xlabel('Eigenvalue ' + r'$(D_k / \Gamma)$')
     #ax.xaxis.grid(True, which='minor')
     ax.xaxis.set_minor_locator(MultipleLocator(0.1))
 

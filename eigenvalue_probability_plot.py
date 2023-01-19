@@ -37,6 +37,7 @@ for i, alpha in enumerate(alphas):
         
     ax.set_title(r'$\alpha=$ ' + str(alpha))
     ax.set_xlabel(r'$k/N$')
+    ax.axvline(np.sqrt(N) * np.log(N) / N, c='r')
     
     
     ax = axes[1][i]

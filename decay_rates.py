@@ -36,7 +36,7 @@ for m, beta in enumerate(betas):
             popt, pcov = curve_fit(correlation_length_fit, np.arange(fit_start, N//2, 1), susc[fit_start:N//2], p0=[1, 1])
             crit_exp.append(popt[0])
 
-        popt, pcov = curve_fit(correlation_decay_fit, alphas[:3*len(alphas)//4], crit_exp[:3*len(alphas)//4], p0=(1, 0))
+        popt, pcov = curve_fit(correlation_decay_fit, alphas[:2*len(alphas)//4], crit_exp[:2*len(alphas)//4], p0=(1, 0))
         rates_of_decay_rates[m, n] = popt[0]
 
-np.savez(f'data/rates_of_decay_rates_{len(alphas)}_{len(Ts)}_{len(J0s)}', Ts=Ts, J0s=J0s, rates=rates_of_decay_rates)
+np.savez(f'data/rates_of_decay_rates_{N}_{M}_{len(alphas)}_{len(Ts)}_{len(J0s)}', Ts=Ts, J0s=J0s, rates=rates_of_decay_rates)

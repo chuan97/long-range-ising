@@ -11,7 +11,7 @@ fig, axes = plt.subplots(1, 1, constrained_layout=True)
 ax = axes
 plt.axhline(0.02, c='k', lw=0.75)
 
-data_rates = np.load('data/rates_of_decay_rates_20_100_100.npz')
+data_rates = np.load('data/rates_of_decay_rates_70_35_20_100_100_alt.npz')
 Ts = data_rates['Ts']
 J0s = data_rates['J0s']
 rates = data_rates['rates']

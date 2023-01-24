@@ -9,13 +9,13 @@ def correlation_decay_fit(x, m, n):
 
 import algo
 
-N = 70
+N = 100
 M = int(np.sqrt(N) * np.log(N))
-Ts = np.linspace(0.02, 1.4, 100)
+Ts = np.linspace(0.02, 1.4, 20)
 betas = 1 / Ts
 wz = 1
-J0s = np.linspace(0.1, 0.65, 100)
-alphas = np.linspace(0.3, 0.99, 20)
+J0s = np.linspace(0.1, 0.65, 20)
+alphas = np.linspace(0.01, 0.5, 10)
 gs = 0.0 * np.ones(N)
 dg = 5e-3 * wz
 i = 0
@@ -39,4 +39,4 @@ for m, beta in enumerate(betas):
         popt, pcov = curve_fit(correlation_decay_fit, alphas[:2*len(alphas)//4], crit_exp[:2*len(alphas)//4], p0=(1, 0))
         rates_of_decay_rates[m, n] = popt[0]
 
-np.savez(f'data/rates_of_decay_rates_{N}_{M}_{len(alphas)}_{len(Ts)}_{len(J0s)}', Ts=Ts, J0s=J0s, rates=rates_of_decay_rates)
+np.savez(f'data/latest_rates_of_decay_rates_{N}_{M}_{len(alphas)}_{len(Ts)}_{len(J0s)}', Ts=Ts, J0s=J0s, rates=rates_of_decay_rates)

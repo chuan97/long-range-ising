@@ -11,15 +11,18 @@ fig, axes = plt.subplots(1, 1, constrained_layout=True)
 ax = axes
 plt.axhline(0.02, c='k', lw=0.75)
 
-data_rates = np.load('data/rates_of_decay_rates_70_35_20_100_100_alt.npz')
+data_rates = np.load('data/latest_rates_of_decay_rates_100_46_15_100_100.npz')
 Ts = data_rates['Ts']
 J0s = data_rates['J0s']
 rates = data_rates['rates']
-cm = ax.pcolormesh(J0s, Ts, rates, vmin=0, vmax=1., cmap='viridis')   
+print(np.amin(rates), np.amax(rates))
+rates[rates > 1] = 1
+rates[rates < 0] = 0
+cm = ax.pcolormesh(J0s, Ts, rates, cmap='viridis', vmin=np.amin(rates), vmax=np.amax(rates))   
 # label = r'fit of $a$ ($\alpha_\chi = a \alpha + b ; \quad \chi_{0j} = A \cdot j^{-\alpha_\chi})$'
 label = r'$a$ (fitted from $\alpha_\chi = a \alpha + b)$'
 cbar = fig.colorbar(cm, label=label, pad=0.01, aspect=40)
-cbar.ax.set_yticklabels(['0.0', '0.2', '0.4', '0.6', '0.8', r'$\geq 1.0$'])
+#cbar.ax.set_yticklabels(['0.0', '0.2', '0.4', '0.6', '0.8', r'$\geq 1.0$'])
 
 c = plt.get_cmap('magma')(np.linspace(0.1, 0.9, 5))[3]
 

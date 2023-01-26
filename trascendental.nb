@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     17899,        433]
-NotebookOptionsPosition[     16269,        396]
-NotebookOutlinePosition[     16606,        411]
-CellTagsIndexPosition[     16563,        408]
+NotebookDataLength[     24460,        588]
+NotebookOptionsPosition[     22377,        543]
+NotebookOutlinePosition[     22714,        558]
+CellTagsIndexPosition[     22671,        555]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -176,7 +176,7 @@ Cell[BoxData[
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`S$$ = Rational[9, 2], Typeset`show$$ = True,
+   DynamicModuleBox[{$CellContext`S$$ = Rational[5, 2], Typeset`show$$ = True,
      Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -269,13 +269,13 @@ Cell[BoxData[
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`S$$ = Rational[5, 2], Typeset`show$$ = True,
-     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+   DynamicModuleBox[{$CellContext`S$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`S$$], 
       Rational[1, 2], 10, 
-      Rational[1, 2]}}, Typeset`size$$ = {360., {111., 116.}}, 
+      Rational[1, 2]}}, Typeset`size$$ = {360., {109., 113.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
     True, $CellContext`S$131878$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
@@ -292,7 +292,7 @@ $CellContext`gg[$CellContext`x, $CellContext`S$$], {$CellContext`x, 0, 5}],
       "Specifications" :> {{$CellContext`S$$, 
          Rational[1, 2], 10, 
          Rational[1, 2]}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{405., {156., 162.}},
+     ImageSizeCache->{405., {154., 160.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -305,6 +305,153 @@ $CellContext`gg[$CellContext`x, $CellContext`S$$], {$CellContext`x, 0, 5}],
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{{3.883543857888631*^9, 3.8835438807860727`*^9}},
  CellLabel->"Out[36]=",ExpressionUUID->"d9168116-d3fe-4494-82bb-7dbb0596f11f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"g", "[", 
+        RowBox[{"x", ",", " ", "S"}], "]"}], " ", "/", " ", 
+       RowBox[{"(", 
+        RowBox[{"2", "S", " ", "x"}], ")"}]}], " ", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", " ", "0", ",", " ", "5"}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"S", ",", " ", 
+      RowBox[{"1", "/", "2"}], ",", " ", "10", ",", " ", 
+      RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.883722039269761*^9, 3.8837220538648252`*^9}, {
+  3.883722085095299*^9, 3.883722090729425*^9}},
+ CellLabel->"In[39]:=",ExpressionUUID->"c1f5b444-09cb-4b1d-b05f-181cee0b5167"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`S$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`S$$], 
+      Rational[1, 2], 10, 
+      Rational[1, 2]}}, Typeset`size$$ = {360., {109., 113.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`S$140134$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`S$$ = Rational[1, 2]}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`S$$, $CellContext`S$140134$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[$CellContext`g[$CellContext`x, $CellContext`S$$]/(
+        2 $CellContext`S$$ $CellContext`x), {$CellContext`x, 0, 5}], 
+      "Specifications" :> {{$CellContext`S$$, 
+         Rational[1, 2], 10, 
+         Rational[1, 2]}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{405., {154., 160.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.88372204852043*^9, 3.883722054439687*^9}, 
+   3.883722091810886*^9},
+ CellLabel->"Out[39]=",ExpressionUUID->"c758ae16-dbc4-4a4e-85ea-fed03f0949c9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{"1", " ", "-", " ", 
+       RowBox[{"2", " ", "a", " ", 
+        RowBox[{
+         RowBox[{"g", "[", 
+          RowBox[{
+           RowBox[{"b", " ", "x"}], ",", " ", "S"}], "]"}], " ", "/", 
+         "x"}]}]}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", " ", "0.5", ",", " ", "2"}], "}"}]}], "]"}], ",", 
+    " ", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", " ", "0", ",", " ", "2"}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", " ", "0.001", ",", " ", "10"}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"S", ",", " ", 
+      RowBox[{"1", "/", "2"}], ",", " ", "10", ",", " ", 
+      RowBox[{"1", "/", "2"}]}], "}"}]}], " ", "]"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.8837291650579*^9, 3.8837291785849113`*^9}, {
+  3.883729244152804*^9, 3.8837292445672703`*^9}},
+ CellLabel->"In[41]:=",ExpressionUUID->"616cedc7-cf07-4638-9d87-4b99b9de2bfc"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 0.535, $CellContext`b$$ = 
+    10., $CellContext`S$$ = Rational[1, 2], Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`a$$], 0, 2}, {
+      Hold[$CellContext`b$$], 0.001, 10}, {
+      Hold[$CellContext`S$$], 
+      Rational[1, 2], 10, 
+      Rational[1, 2]}}, Typeset`size$$ = {360., {105., 109.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`a$161898$$ = 0, $CellContext`b$161899$$ = 
+    0, $CellContext`S$161900$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 0, $CellContext`b$$ = 
+        0.001, $CellContext`S$$ = Rational[1, 2]}, "ControllerVariables" :> {
+        Hold[$CellContext`a$$, $CellContext`a$161898$$, 0], 
+        Hold[$CellContext`b$$, $CellContext`b$161899$$, 0], 
+        Hold[$CellContext`S$$, $CellContext`S$161900$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[1 - 2 $CellContext`a$$ ($CellContext`g[$CellContext`b$$ \
+$CellContext`x, $CellContext`S$$]/$CellContext`x), {$CellContext`x, 0.5, 2}], 
+      "Specifications" :> {{$CellContext`a$$, 0, 2}, {$CellContext`b$$, 0.001,
+          10}, {$CellContext`S$$, 
+         Rational[1, 2], 10, 
+         Rational[1, 2]}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{405., {205., 211.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.883729182898746*^9, {3.883729231274954*^9, 3.883729266202718*^9}},
+ CellLabel->"Out[41]=",ExpressionUUID->"0799e370-9d8a-4d4f-a86f-c726123d7377"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -429,11 +576,19 @@ Cell[9589, 237, 227, 4, 34, "Output",ExpressionUUID->"2ca1b96c-4e77-423f-85c2-ff
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[9853, 246, 764, 20, 30, "Input",ExpressionUUID->"8a0aad7c-2e40-45ca-a3d3-e45ce9957006"],
-Cell[10620, 268, 1901, 38, 372, "Output",ExpressionUUID->"d9168116-d3fe-4494-82bb-7dbb0596f11f"]
+Cell[10620, 268, 1888, 38, 333, "Output",ExpressionUUID->"d9168116-d3fe-4494-82bb-7dbb0596f11f"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12558, 311, 1339, 32, 73, "Input",ExpressionUUID->"73c13605-b746-4199-81e2-35c8ceaf3bdb"],
-Cell[13900, 345, 2353, 48, 389, "Output",ExpressionUUID->"47623195-4f30-4a49-9800-b2df60b7a95b"]
+Cell[12545, 311, 773, 20, 52, "Input",ExpressionUUID->"c1f5b444-09cb-4b1d-b05f-181cee0b5167"],
+Cell[13321, 333, 1887, 39, 333, "Output",ExpressionUUID->"c758ae16-dbc4-4a4e-85ea-fed03f0949c9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15245, 377, 1018, 27, 73, "Input",ExpressionUUID->"616cedc7-cf07-4638-9d87-4b99b9de2bfc"],
+Cell[16266, 406, 2363, 47, 470, "Output",ExpressionUUID->"0799e370-9d8a-4d4f-a86f-c726123d7377"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18666, 458, 1339, 32, 73, "Input",ExpressionUUID->"73c13605-b746-4199-81e2-35c8ceaf3bdb"],
+Cell[20008, 492, 2353, 48, 389, "Output",ExpressionUUID->"47623195-4f30-4a49-9800-b2df60b7a95b"]
 }, Open  ]]
 }
 ]

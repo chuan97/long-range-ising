@@ -12,7 +12,7 @@ fig, axes = plt.subplots(1, 1, constrained_layout=True)
 
 ax = axes
 
-N = 70
+N = 150
 M = int(np.sqrt(N) * np.log(N))
 print(M)
 

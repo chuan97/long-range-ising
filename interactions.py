@@ -12,10 +12,10 @@ def powerlaw_pbc(N, alpha):
 
 def shift(J, epsilon, *, return_shift=False):
     vals = eigh(J, eigvals_only=True)
-    b = vals[0] - epsilon
+    b = epsilon - vals[0]
     if return_shift:
-        return J - np.eye(J.shape[0]) * b, b
-    return J - np.eye(J.shape[0]) * b
+        return J + np.eye(J.shape[0]) * b, b
+    return J + np.eye(J.shape[0]) * b
 
 def rescale(J, *, return_scale=False):
     S = np.sum(J[0])

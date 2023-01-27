@@ -9,19 +9,17 @@ def arcoth(x):
 plot.set_rcParams(size = (10, 8), lw = 3, fs = 20)
 fig, axes = plt.subplots(1, 1, constrained_layout=True)
 ax = axes
-plt.axhline(0.02, c='k', lw=0.75)
+#plt.axhline(0.02, c='k', lw=0.75)
 
-data_rates = np.load('data/latest_rates_of_decay_rates_110_49_15_100_100.npz')
-alt_files = ['data/latest_rates_of_decay_rates_100_46_15_100_100.npz',
-             'data/latest_rates_of_decay_rates_90_42_15_100_100.npz',
-             'data/latest_rates_of_decay_rates_80_39_15_100_100.npz',
-             'data/latest_rates_of_decay_rates_70_35_15_100_100.npz',
+data_rates = np.load('data/latest_rates_of_decay_rates_120_52_15_100_100.npz')
+alt_files = ['data/latest_rates_of_decay_rates_110_49_15_100_100.npz',
              ]
 #alt_files = []
 Ts = data_rates['Ts']
 J0s = data_rates['J0s']
 rates = data_rates['rates']
 
+# correct corrupted data points
 for fname in alt_files:
     alt_data = np.load(fname)
     alt_rates = alt_data['rates']
@@ -33,11 +31,12 @@ for fname in alt_files:
 print(np.amin(rates), np.amax(rates))
 rates[rates > 1] = 1
 rates[rates < 0] = 0
-cm = ax.pcolormesh(J0s, Ts, rates, cmap='viridis', vmin=np.amin(rates), vmax=np.amax(rates))   
+cm = ax.pcolormesh(J0s, Ts, rates, cmap='viridis', vmin=0, vmax=1)   
 # label = r'fit of $a$ ($\alpha_\chi = a \alpha + b ; \quad \chi_{0j} = A \cdot j^{-\alpha_\chi})$'
 label = r'$a$ (fitted from $\alpha_\chi = a \alpha + b)$'
 cbar = fig.colorbar(cm, label=label, pad=0.01, aspect=40)
-#cbar.ax.set_yticklabels(['0.0', '0.2', '0.4', '0.6', '0.8', r'$\geq 1.0$'])
+#cbar.ax.set_yticks(np.linspace(0.0, 1.0, 6))
+#cbar.ax.set_yticklabels(np.arange(0.0, 1.1, 0.2))
 
 c = plt.get_cmap('magma')(np.linspace(0.1, 0.9, 5))[3]
 

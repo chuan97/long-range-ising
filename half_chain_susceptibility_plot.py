@@ -12,7 +12,7 @@ fig, axes = plt.subplots(1, 1, constrained_layout=True)
 
 ax = axes
 
-N = 150
+N = 120
 M = int(np.sqrt(N) * np.log(N))
 print(M)
 
@@ -42,10 +42,11 @@ for alpha in alphas:
 
 ax.axvline(0.25, c='k', lw=0.5)
 ax.set_yscale('log')
+#ax.set_ylim(1e-4, 1e2)
 #ax.set_xscale('log')
 ax.set_ylabel(r'$\chi_{N/2} \omega_z $')
 ax.set_xlabel(r'$\Gamma / \omega_z$')
 ax.legend(frameon=False, title=r'$\alpha$')
 
 
-fig.savefig('plots/half_chain_susceptibility.pdf', bbox_inches='tight', dpi=300)
+fig.savefig(f'plots/half_chain_susceptibility_{N}.pdf', bbox_inches='tight', dpi=300)

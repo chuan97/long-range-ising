@@ -6,6 +6,10 @@ from matplotlib.ticker import MultipleLocator
 import plot
 import interactions
 
+def Dk_exact(Jrs, k, N):
+    rs = np.arange(0, N//2)
+    return np.sum(Jrs * np.cos(2 * np.pi * k * rs / N))
+
 plot.set_rcParams(size = (10, 9), lw = 2, fs = 20)
 
 Ns = [100, 500, 1000]
@@ -26,7 +30,8 @@ for i, alpha in enumerate(alphas):
 
     vals = eigh(Jbase, eigvals_only=True)
     #if j == 0:
-    ax.plot(np.arange(1, len(vals) + 1) / N, vals[::-1], c=colors[0], lw=0, marker='o') 
+    ax.plot(np.arange(N) / N, vals[::-1], c=colors[0], lw=0, marker='o') 
+    ax.plot(np.arange(N) / N, [Dk_exact(Jbase[:N//2, 0], k, N) for k in np.arange(N)])
     ax.axhline(0, lw=0.5, c='k')
     
     if i == 0:

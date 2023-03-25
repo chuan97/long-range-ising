@@ -5,6 +5,7 @@ from matplotlib.ticker import MultipleLocator
 
 import plot
 import interactions
+import utils
 
 plot.set_rcParams(size = (10, 9), lw = 2, fs = 20)
 
@@ -20,18 +21,17 @@ for i, alpha in enumerate(alphas):
     ax = axes[0][i]
     N = 100
     
-    Jbase = interactions.powerlaw_pbc(N, alpha)
-    afmJ = np.zeros(Jbase.shape)
-    for k in range(Jbase.shape[0]):
-        afmJ += np.diag((-1)**k * np.diag(Jbase, k=k), k=k)
-        afmJ += np.diag((-1)**k * np.diag(Jbase, k=-k), k=-k)
-        
+    afmJ = interactions.powerlaw_pbc_afm(N, alpha)
     afmJ = interactions.shift(afmJ, 0.)
     #afmJ = interactions.rescale(afmJ)
     
     vals = eigh(afmJ, eigvals_only=True)
     #if j == 0:
-    ax.plot(np.arange(1, len(vals) + 1) / N, vals[::-1] / np.amax(vals), c=colors[0], lw=0, marker='o') 
+    ks = np.arange(0, N)
+    ax.plot(ks / N, vals[::-1] / np.amax(vals), c=colors[0], lw=0, marker='o') 
+    Dks = [utils.Dk_exact(afmJ[:N//2, 0], 2*np.pi*k/N, N) for k in ks]
+    Dks.sort(reverse=True)
+    ax.plot(ks / N, Dks / np.amax(vals))
     ax.axhline(0, lw=0.5, c='k')
     
     if i == 0:

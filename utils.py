@@ -22,6 +22,10 @@ def truncate_dicke(ws, lams, M):
     
     return ws_truncated, lams_truncated
 
+def Dk_exact(Jrs, k, N):
+    rs = np.arange(1, N//2)
+    return Jrs[0] + np.sum(Jrs[1:] * 2 * np.cos(k * rs))
+
 def critical_point_recursive_refinement(f_order_parameter, critical_parameter, other_args, rounds=2, *, verbose=False):
     L = len(critical_parameter)
     op = f_order_parameter(critical_parameter, *other_args)

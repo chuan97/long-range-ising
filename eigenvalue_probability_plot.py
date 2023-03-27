@@ -10,7 +10,7 @@ import utils
 plot.set_rcParams(size = (10, 9), lw = 2, fs = 20)
 
 Ns = [100, 500, 1000]
-alphas = [0.2, 1.8]
+alphas = [0.2, 10]
 
 cmap = plt.get_cmap('viridis')
 colors = cmap(np.linspace(0.1, 0.9, len(Ns)))
@@ -48,7 +48,7 @@ for i, alpha in enumerate(alphas):
     ax = axes[1][i]
 
     data = []
-    for N in Ns:
+    for N,color in zip(Ns, colors):
         Jbase = interactions.powerlaw_pbc(N, alpha)
         Jbase = interactions.shift(Jbase, 0.)
         Jbase = interactions.rescale(Jbase)

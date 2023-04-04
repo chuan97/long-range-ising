@@ -10,6 +10,15 @@ def powerlaw_pbc(N, alpha):
             
     return J
 
+def powerlaw_obc(N, alpha):
+    J = np.zeros((N, N))
+   
+    for idx, _ in np.ndenumerate(J):
+        i, j = idx
+        J[idx] = 0 if i == j else float(np.abs(j - i)) ** (-alpha)
+            
+    return J
+
 def powerlaw_pbc_afm(N, alpha):
     J = powerlaw_pbc(N, alpha)
     afmJ = np.zeros(J.shape)

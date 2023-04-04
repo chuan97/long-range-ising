@@ -21,19 +21,22 @@ for i, alpha in enumerate(alphas):
     avg_eig = []
     for N in Ns:
         Jbase = interactions.powerlaw_pbc(N, alpha)
-        Jbase = interactions.shift(Jbase, 0.)
+        Jbase, b = interactions.shift(Jbase, 0., return_shift=True)
         Jbase = interactions.rescale(Jbase)
 
         vals = eigh(Jbase, eigvals_only=True)
-        avg_eig.append(np.sum(vals) / N)
+        avg_eig.append(np.sum(vals) / (N * b))
     avg_eig = np.array(avg_eig)    
     ax.plot(np.log10(Ns), 1 / avg_eig, label=alpha)
+    ax.plot(np.log10(Ns), 4.65*np.log10(Ns) + 1.1, c='k')
     
-    #ax.set_xscale('log')
-    #ax.set_yscale('log')
+#ax.set_xscale('log')
+#ax.set_yscale('log')
 ax.set_xlim(1, 2)
 ax.set_ylim(0, 20)
-ax.legend()
+ax.set_ylabel(r'$b / \langle D_k \rangle$')
+ax.set_xlabel(r'$\log_{10}(N)$')
+ax.legend(title=r'$\alpha$')
     
 fig.savefig('plots/eigenvalue_average.pdf', bbox_inches='tight', dpi=300)
         

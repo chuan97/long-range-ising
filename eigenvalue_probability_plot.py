@@ -31,7 +31,6 @@ for i, alpha in enumerate(alphas):
     ax.plot(ks / N, vals[::-1], c=colors[0], lw=0, marker='o') 
     Dks = [utils.Dk_exact(Jbase[:N//2, 0], 2*np.pi*k/N, N) for k in ks]
     Dks.sort(reverse=True)
-    print(Dks)
     ax.plot(ks / N, Dks)
     ax.axhline(0, lw=0.5, c='k')
     

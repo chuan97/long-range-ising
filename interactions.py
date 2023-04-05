@@ -36,7 +36,7 @@ def shift(J, epsilon, *, return_shift=False):
     return J + np.eye(J.shape[0]) * b
 
 def rescale(J, *, return_scale=False):
-    S = np.abs(np.sum(J[0]))
+    S = np.sum(np.abs(J[0]))
     if return_scale:
         return J/S, S
     return J/S

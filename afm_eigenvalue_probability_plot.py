@@ -23,15 +23,15 @@ for i, alpha in enumerate(alphas):
     
     afmJ = interactions.powerlaw_pbc_afm(N, alpha)
     afmJ = interactions.shift(afmJ, 0.)
-    #afmJ = interactions.rescale(afmJ)
+    afmJ = interactions.rescale(afmJ)
     
     vals = eigh(afmJ, eigvals_only=True)
     #if j == 0:
     ks = np.arange(0, N)
-    ax.plot(ks / N, vals[::-1] / np.amax(vals), c=colors[0], lw=0, marker='o') 
+    ax.plot(ks / N, vals[::-1], c=colors[0], lw=0, marker='o') 
     Dks = [utils.Dk_exact(afmJ[:N//2, 0], 2*np.pi*k/N, N) for k in ks]
     Dks.sort(reverse=True)
-    ax.plot(ks / N, Dks / np.amax(vals))
+    ax.plot(ks / N, Dks)
     ax.axhline(0, lw=0.5, c='k')
     
     if i == 0:

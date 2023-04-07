@@ -35,11 +35,11 @@ def mag_longitudinal_hessian_debug(beta, wz, ws, λs, gs, N):
 
 def mag_longitudinal_debug(beta, wz, ws, λs, gs, N):
     import matplotlib.pyplot as plt
-    print(λs)
-    print(np.sum(λs, axis=0) / N)
-    plt.imshow(λs)
-    plt.colorbar()
-    plt.show()
+    #print(λs)
+    #print(np.sum(λs, axis=0) / N)
+    #plt.imshow(λs)
+    #plt.colorbar()
+    #plt.show()
     def func(xs):
         aux = kernel(xs, λs, gs)
         return beta * np.sum(ws * xs**2) - 1/N * np.sum(np.log(2 * np.cosh(0.5 * beta * np.sqrt(wz**2 + 4*aux**2))))

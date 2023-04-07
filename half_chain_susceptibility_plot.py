@@ -12,7 +12,7 @@ fig, axes = plt.subplots(1, 1, constrained_layout=True)
 
 ax = axes
 
-N = 120
+N = 70
 M = int(np.sqrt(N) * np.log(N))
 print(M)
 
@@ -21,7 +21,7 @@ wz = 1
 J0s = np.linspace(0.05, 0.5, 100)
 alphas = [0.1, 0.5, 0.9]
 
-dg = 5e-3 * wz
+dg = 1e-3 * wz
 
 i = 0
 j = N//2
@@ -33,9 +33,12 @@ for alpha in alphas:
 
     for J0 in J0s:
         gs = 0.0 * np.ones(N)
-        mxs0 = algo.lrising_mags(wz, J0, alpha, gs, beta, N, M)
+        mxs0, uks0 = algo.lrising_mags_debug(wz, J0, alpha, gs, beta, N, M)
         gs[i] = dg
-        mxs1 = algo.lrising_mags(wz, J0, alpha, gs, beta, N, M)
+        mxs1, uks1 = algo.lrising_mags_debug(wz, J0, alpha, gs, beta, N, M)
+        #plt.plot(uks0)
+        #plt.plot(uks1)
+        #plt.show()
         susc.append(((mxs1 - mxs0) / dg)[j])
     
     ax.plot(J0s, susc, c=next(colors), label=alpha)
@@ -49,4 +52,4 @@ ax.set_xlabel(r'$\Gamma / \omega_z$')
 ax.legend(frameon=False, title=r'$\alpha$')
 
 
-fig.savefig(f'plots/half_chain_susceptibility_{N}.pdf', bbox_inches='tight', dpi=300)
+fig.savefig(f'plots/half_chain_susceptibility_{N}_alt.pdf', bbox_inches='tight', dpi=300)

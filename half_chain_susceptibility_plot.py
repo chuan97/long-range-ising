@@ -24,7 +24,7 @@ alphas = [0.1, 0.5, 0.9]
 dg = 1e-3 * wz
 
 i = 0
-j = N//2
+j = 1
 
 cmap = plt.get_cmap('viridis')
 colors = iter(cmap(np.linspace(0.9, 0.1, len(alphas))))
@@ -50,6 +50,6 @@ ax.set_yscale('log')
 ax.set_ylabel(r'$\chi_{N/2} \omega_z $')
 ax.set_xlabel(r'$\Gamma / \omega_z$')
 ax.legend(frameon=False, title=r'$\alpha$')
-
+print(susc[0]*N)
 
 fig.savefig(f'plots/half_chain_susceptibility_{N}_alt.pdf', bbox_inches='tight', dpi=300)

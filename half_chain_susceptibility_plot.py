@@ -13,7 +13,7 @@ fig, axes = plt.subplots(1, 1, constrained_layout=True)
 ax = axes
 
 N = 70
-M = int(np.sqrt(N) * np.log(N))
+M = int(np.sqrt(N) * np.log(N)) + 1
 print(M)
 
 beta = 10
@@ -30,26 +30,29 @@ cmap = plt.get_cmap('viridis')
 colors = iter(cmap(np.linspace(0.9, 0.1, len(alphas))))
 for alpha in alphas:
     susc = []
+    susc_exact = []
 
     for J0 in J0s:
-        gs = 0.0 * np.ones(N)
-        mxs0, uks0 = algo.lrising_mags_debug(wz, J0, alpha, gs, beta, N, M)
+        gs = np.zeros(N)
+        mxs0 = algo.lrising_mags(wz, J0, alpha, gs, beta, N, M)
         gs[i] = dg
-        mxs1, uks1 = algo.lrising_mags_debug(wz, J0, alpha, gs, beta, N, M)
-        #plt.plot(uks0)
-        #plt.plot(uks1)
-        #plt.show()
+        mxs1 = algo.lrising_mags(wz, J0, alpha, gs, beta, N, M)
         susc.append(((mxs1 - mxs0) / dg)[j])
+        susc_exact.append(algo.chi_ij_f(i, j, wz, J0, alpha, beta, N, M))
     
-    ax.plot(J0s, susc, c=next(colors), label=alpha)
+    c = next(colors)
+    ax.plot(J0s, susc, c=c, label=alpha)
+    ax.plot(J0s, susc_exact, c=c, lw=0, marker='o', markevery=2)
 
 ax.axvline(0.25, c='k', lw=0.5)
 ax.set_yscale('log')
 #ax.set_ylim(1e-4, 1e2)
 #ax.set_xscale('log')
-ax.set_ylabel(r'$\chi_{N/2} \omega_z $')
+ax.set_ylabel(r'$\chi_{1} \omega_z $')
 ax.set_xlabel(r'$\Gamma / \omega_z$')
 ax.legend(frameon=False, title=r'$\alpha$')
-print(susc[0]*N)
 
-fig.savefig(f'plots/half_chain_susceptibility_{N}_alt.pdf', bbox_inches='tight', dpi=300)
+if j == N//2:
+    fig.savefig(f'plots/half_chain_susceptibility_{N}_{beta}.pdf', bbox_inches='tight', dpi=300)
+elif j == 1:
+    fig.savefig(f'plots/first_neighbour_susceptibility_{N}_{beta}.pdf', bbox_inches='tight', dpi=300)

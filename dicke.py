@@ -4,7 +4,17 @@ from scipy.optimize import basinhopping, minimize
 def kernel(xs, λs, gs):
     return 2*np.sum(λs*xs, axis=1) + gs
 
+def uks_f(uks, beta, wz, ws, λs, gs, N):
+    aux = kernel(uks, λs, gs)
+    return beta*np.sum(ws * uks**2) - 1/N*np.sum(np.log(2 * np.cosh(0.5 * beta * np.sqrt(wz**2 + 4*aux**2))))
+
 def mag_longitudinal(beta, wz, ws, λs, gs, N):
+    uks = minimize(uks_f, x0=np.array([0.1]*len(ws)), args=(beta, wz, ws, λs, gs, N)).x
+    aux = kernel(uks, λs, gs)
+    #print(xs)
+    return 0.5 * np.tanh(0.5 * beta * np.sqrt(wz**2 + 4*aux**2)) * 4 * aux / np.sqrt(wz**2 + 4*aux**2)
+
+def mag_longitudinal_old(beta, wz, ws, λs, gs, N):
     def func(xs):
         aux = kernel(xs, λs, gs)
         return beta * np.sum(ws * xs**2) - 1/N * np.sum(np.log(2 * np.cosh(0.5 * beta * np.sqrt(wz**2 + 4*aux**2))))
@@ -50,3 +60,11 @@ def mag_longitudinal_debug(beta, wz, ws, λs, gs, N):
     aux = kernel(xs, λs, gs)
     #print(xs)
     return 0.5 * np.tanh(0.5 * beta * np.sqrt(wz**2 + 4*aux**2)) * 4 * aux / np.sqrt(wz**2 + 4*aux**2), xs
+
+def Ys_f(beta, wz, ws, λs, gs, N):
+    uks = minimize(uks_f, x0=np.array([0.1]*len(ws)), args=(beta, wz, ws, λs, gs, N)).x
+    #print(uks[-1])
+    aux = kernel(uks, λs, gs)
+    eps = 0.5 * np.sqrt(wz**2 + 4*aux**2)
+    
+    return (1 - np.tanh(beta * eps)**2)*beta*(aux / eps)**2 + np.tanh(beta * eps)*(1/eps - (aux**2 / eps**3)) 

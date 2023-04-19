@@ -49,7 +49,7 @@ ax.set_yscale('log')
 #ax.set_xscale('log')
 ax.set_ylabel(r'$\chi_{N/2} \omega_z $')
 ax.set_xlabel(r'$\Gamma / \omega_z$')
-ax.legend(frameon=False, title=r'$\alpha$')
+ax.legend(frameon=False, title=r'$\alpha$', labelcolor='w')
 
 if j == N//2:
     fig.savefig(f'plots/comparison_half_chain_susceptibility_{N}_{beta}.pdf', bbox_inches='tight', dpi=300)

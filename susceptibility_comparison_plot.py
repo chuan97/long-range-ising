@@ -13,8 +13,6 @@ fig, axes = plt.subplots(1, 1, constrained_layout=True)
 ax = axes
 
 N = 70
-M = int(np.sqrt(N) * np.log(N)) + 1
-print(M)
 
 beta = 10
 wz = 1
@@ -29,6 +27,7 @@ j = N//2
 cmap = plt.get_cmap('viridis')
 colors = iter(cmap(np.linspace(0.9, 0.1, len(alphas))))
 for alpha in alphas:
+    M = round(N**np.tanh(2*alpha**(1/2)))
     susc = []
     susc_exact = []
 
@@ -53,6 +52,6 @@ ax.set_xlabel(r'$\Gamma / \omega_z$')
 ax.legend(frameon=False, title=r'$\alpha$')
 
 if j == N//2:
-    fig.savefig(f'plots/half_chain_susceptibility_{N}_{beta}.pdf', bbox_inches='tight', dpi=300)
+    fig.savefig(f'plots/comparison_half_chain_susceptibility_{N}_{beta}.pdf', bbox_inches='tight', dpi=300)
 elif j == 1:
-    fig.savefig(f'plots/first_neighbour_susceptibility_{N}_{beta}.pdf', bbox_inches='tight', dpi=300)
+    fig.savefig(f'plots/comparison_first_neighbour_susceptibility_{N}_{beta}.pdf', bbox_inches='tight', dpi=300)

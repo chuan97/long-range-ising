@@ -11,7 +11,7 @@ import algo
 
 N = 100
 fit_start = N//4
-Ts = np.linspace(0.02, 1.4, 100)
+Ts = np.linspace(0.005, 1.4, 100)
 betas = 1 / Ts
 wz = 1
 J0s = np.linspace(0.1, 0.65, 100)
@@ -24,7 +24,8 @@ for m, beta in enumerate(betas):
     for n, J0 in enumerate(J0s):
         crit_exp = []
         for alpha in alphas:
-            M = round(N**np.tanh(2*alpha**(1/2)))
+            M = round(N**np.tanh(2*alphas[-1]**(1/2)))
+            #M = np.sqrt(N) * np.log(N)
             
             susc = algo.chirs_f_alt(wz, J0, alpha, beta, N, M)
             
@@ -34,4 +35,4 @@ for m, beta in enumerate(betas):
         popt, pcov = curve_fit(correlation_decay_fit, alphas[:2*len(alphas)//4], crit_exp[:2*len(alphas)//4], p0=(1, 0))
         rates_of_decay_rates[m, n] = popt[0]
 
-np.savez(f'data/analytical_rates_of_decay_rates_{N}_{M}_{len(alphas)}_{len(Ts)}_{len(J0s)}', Ts=Ts, J0s=J0s, rates=rates_of_decay_rates)
+np.savez(f'data/analytical_rates_of_decay_rates_{N}_{M}_{len(alphas)}_{len(Ts)}_{len(J0s)}_fixed_large', Ts=Ts, J0s=J0s, rates=rates_of_decay_rates)

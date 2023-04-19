@@ -12,7 +12,7 @@ ax = axes
 #plt.axhline(0.02, c='k', lw=0.75)
 
 #data_rates = np.load('data/latest_rates_of_decay_rates_120_52_15_100_100.npz')
-data_rates = np.load('data/analytical_rates_of_decay_rates_100_60_10_20_20.npz')
+data_rates = np.load('data/analytical_rates_of_decay_rates_100_60_15_100_100_fixed_large.npz')
 alt_files = ['data/latest_rates_of_decay_rates_110_49_15_100_100.npz',
              ]
 alt_files = []
@@ -35,7 +35,7 @@ rates[rates < 0] = 0
 cm = ax.pcolormesh(J0s, Ts, rates, cmap='viridis', vmin=0, vmax=1)   
 # label = r'fit of $a$ ($\alpha_\chi = a \alpha + b ; \quad \chi_{0j} = A \cdot j^{-\alpha_\chi})$'
 label = r'$a$ (fitted from $\alpha_\chi = a \alpha + b)$'
-cbar = fig.colorbar(cm, label=label, pad=0.01, aspect=40)
+cbar = fig.colorbar(cm, label=label, pad=0.02, aspect=40)
 #cbar.ax.set_yticks(np.linspace(0.0, 1.0, 6))
 #cbar.ax.set_yticklabels(np.arange(0.0, 1.1, 0.2))
 

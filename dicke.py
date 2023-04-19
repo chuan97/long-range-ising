@@ -8,6 +8,9 @@ def uks_f(uks, beta, wz, ws, λs, gs, N):
     aux = kernel(uks, λs, gs)
     return beta*np.sum(ws * uks**2) - 1/N*np.sum(np.log(2 * np.cosh(0.5 * beta * np.sqrt(wz**2 + 4*aux**2))))
 
+def u_f(u, beta, wz, w0):
+    return beta*w0*u**2 - np.log(2 * np.cosh(0.5 * beta * np.sqrt(wz**2 + 16*u**2)))
+
 def mag_longitudinal(beta, wz, ws, λs, gs, N):
     uks = minimize(uks_f, x0=np.array([0.1]*len(ws)), args=(beta, wz, ws, λs, gs, N)).x
     aux = kernel(uks, λs, gs)
@@ -68,3 +71,10 @@ def Ys_f(beta, wz, ws, λs, gs, N):
     eps = 0.5 * np.sqrt(wz**2 + 4*aux**2)
     
     return (1 - np.tanh(beta * eps)**2)*beta*(aux / eps)**2 + np.tanh(beta * eps)*(1/eps - (aux**2 / eps**3)) 
+
+def Y_f(beta, wz, w0):
+    u = minimize(u_f, x0=0.1, args=(beta, wz, w0)).x
+    aux = 2*u
+    eps = 0.5 * np.sqrt(wz**2 + 4*aux**2)
+    return (1 - np.tanh(beta * eps)**2)*beta*(aux / eps)**2 + np.tanh(beta * eps)*(1/eps - (aux**2 / eps**3)) 
+    

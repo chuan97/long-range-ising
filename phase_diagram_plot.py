@@ -11,10 +11,11 @@ fig, axes = plt.subplots(1, 1, constrained_layout=True)
 ax = axes
 #plt.axhline(0.02, c='k', lw=0.75)
 
-data_rates = np.load('data/latest_rates_of_decay_rates_120_52_15_100_100.npz')
+#data_rates = np.load('data/latest_rates_of_decay_rates_120_52_15_100_100.npz')
+data_rates = np.load('data/analytical_rates_of_decay_rates_100_60_10_20_20.npz')
 alt_files = ['data/latest_rates_of_decay_rates_110_49_15_100_100.npz',
              ]
-#alt_files = []
+alt_files = []
 Ts = data_rates['Ts']
 J0s = data_rates['J0s']
 rates = data_rates['rates']

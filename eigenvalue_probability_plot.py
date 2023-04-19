@@ -10,7 +10,7 @@ import utils
 plot.set_rcParams(size = (10, 9), lw = 2, fs = 20)
 
 Ns = [100, 500, 1000]
-alphas = [0.2, 10]
+alphas = [0.1, 0.8]
 
 cmap = plt.get_cmap('viridis')
 colors = cmap(np.linspace(0.1, 0.9, len(Ns)))
@@ -42,7 +42,8 @@ for i, alpha in enumerate(alphas):
         
     ax.set_title(r'$\alpha=$ ' + str(alpha))
     ax.set_xlabel(r'$k/N$')
-    ax.axvline(np.sqrt(N) * np.log(N) / N, c='r')
+    ax.axvline(N**np.tanh(alpha ** (1/2)) / N, c='r')
+    print(N, alpha, N**np.tanh(3*alpha), N**np.tanh(3*alpha) / N)
     
     
     ax = axes[1][i]

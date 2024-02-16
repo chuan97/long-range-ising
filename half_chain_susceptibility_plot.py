@@ -15,7 +15,7 @@ N = 100
 beta = 10
 wz = 1
 J0s = np.linspace(0.05, 0.5, 100)
-alphas = [0.1, 0.5, 0.9]
+alphas = [0.0, 0.5, 0.9]
 gs = np.zeros(N)
 
 i = 0
@@ -35,7 +35,7 @@ for alpha in alphas:
 
 ax.axvline(0.25, c='k', lw=0.5)
 ax.set_yscale('log')
-#ax.set_ylim(1e-4, 1e2)
+#ax.set_ylim(1e-1, 1e4)
 #ax.set_xscale('log')
 ax.set_ylabel(r'$N \chi_{N/2} \omega_z $')
 ax.set_xlabel(r'$\Gamma / \omega_z$')

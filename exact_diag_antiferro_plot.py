@@ -9,8 +9,8 @@ plot.set_rcParams(size = (10, 4), lw = 1, fs = 16)
 
 fig, axes = plt.subplots(1, 2, constrained_layout=True)
 
-m_s = 15
-m_b = 5
+m_s = 7
+m_b = 3
 
 ax = axes[0]
 

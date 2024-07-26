@@ -34,6 +34,18 @@ def powerlaw_pbc_afm(N, alpha):
     return afmJ
 
 
+def powerlaw_pbc_pureafm(N, alpha):
+    J = powerlaw_pbc(N, alpha)
+    afmJ = np.zeros(J.shape)
+    for k in range(J.shape[0]):
+        afmJ += np.diag((-1) ** k * 0.5 * (1 + (-1) ** (k + 1)) * np.diag(J, k=k), k=k)
+        afmJ += np.diag(
+            (-1) ** k * 0.5 * (1 + (-1) ** (k + 1)) * np.diag(J, k=-k), k=-k
+        )
+
+    return afmJ
+
+
 def shift(J, epsilon, *, return_shift=False):
     vals = eigh(J, eigvals_only=True)
     b = epsilon - vals[0]

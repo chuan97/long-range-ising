@@ -1,12 +1,11 @@
-import numpy as np
 import math
-
 from collections import namedtuple
 
-from scipy.linalg import kron, expm
-from scipy.sparse.linalg import expm as expms
+import numpy as np
+from scipy.linalg import expm, kron
+from scipy.sparse import csr_matrix, diags, eye
 from scipy.sparse import kron as krons
-from scipy.sparse import diags, eye, csr_matrix
+from scipy.sparse.linalg import expm as expms
 
 
 def antiferro_hom_unfrustrated_small_spins(wx, wz, G, N, s):
@@ -40,6 +39,37 @@ def antiferro_hom_unfrustrated_small_spins(wx, wz, G, N, s):
     return Hz + Hx + Hint
 
 
+def pureantiferro_hom_unfrustrated_small_spins(wx, wz, G, N, s):
+    Sz, Sp, Sm, Seye = spin_operators(s)
+    Sx = 0.5 * (Sp + Sm)
+
+    # ising interaction
+    aux_op_A = csr_matrix((int(2 * s + 1) ** N, int(2 * s + 1) ** N))
+    aux_op_B = csr_matrix((int(2 * s + 1) ** N, int(2 * s + 1) ** N))
+    for i in range(N):
+        if i % 2 == 0:
+            op_chain_A = [Seye] * i + [Sx] + [Seye] * (N - i - 1)
+            aux_op_A += sparse_kron(*op_chain_A)
+        if i % 2 == 1:
+            op_chain_B = [Seye] * i + [Sx] + [Seye] * (N - i - 1)
+            aux_op_B += sparse_kron(*op_chain_B)
+    Hint = 4 * G / N * aux_op_A @ aux_op_B
+
+    # transverse field
+    Hz = csr_matrix((int(2 * s + 1) ** N, int(2 * s + 1) ** N))
+    for i in range(N):
+        op_chain = [Seye] * i + [Sz] + [Seye] * (N - i - 1)
+        Hz += -wz * sparse_kron(*op_chain)
+
+    # longitudinal field
+    Hx = csr_matrix((int(2 * s + 1) ** N, int(2 * s + 1) ** N))
+    for i in range(N):
+        op_chain = [Seye] * i + [Sx] + [Seye] * (N - i - 1)
+        Hx += -wx * sparse_kron(*op_chain)
+
+    return Hz + Hx + Hint
+
+
 def antiferro_hom_unfrustrated_big_spins(wx, wz, G, N, s):
     S = s * N / 2
     Sz, Sp, Sm, Seye = spin_operators(S)
@@ -52,6 +82,28 @@ def antiferro_hom_unfrustrated_big_spins(wx, wz, G, N, s):
 
     # ising interaction
     Hint = -G / N * (SxA - SxB) @ (SxA - SxB)
+
+    # transverse field
+    Hz = -wz * (SzA + SzB)
+
+    # longitudinal field
+    Hx = -wx * (SxA + SxB)
+
+    return Hz + Hx + Hint
+
+
+def pureantiferro_hom_unfrustrated_big_spins(wx, wz, G, N, s):
+    S = s * N / 2
+    Sz, Sp, Sm, Seye = spin_operators(S)
+    Sx = 0.5 * (Sp + Sm)
+
+    SxA = sparse_kron(Sx, Seye)
+    SxB = sparse_kron(Seye, Sx)
+    SzA = sparse_kron(Sz, Seye)
+    SzB = sparse_kron(Seye, Sz)
+
+    # ising interaction
+    Hint = 4 * G / N * SxA @ SxB
 
     # transverse field
     Hz = -wz * (SzA + SzB)

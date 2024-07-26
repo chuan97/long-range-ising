@@ -1,15 +1,14 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 import plot
 from exact import (
-    antiferro_hom_unfrustrated_small_spins,
     antiferro_hom_unfrustrated_big_spins,
+    antiferro_hom_unfrustrated_small_spins,
     lanczos_ed,
 )
 
-
-plot.set_rcParams(size=(10, 10), lw=2, fs=16)
+plot.set_rcParams(size=(6.5, 8), lw=1.5, fs=14)
 
 fig, axes = plt.subplots(2, 1, constrained_layout=True)
 
@@ -42,14 +41,13 @@ ax.plot(wzs / (s * G), energies_small, c="k")
 ax.plot(
     wzs / (s * G), energies_small[:, -1], c="k", label=r"$N$ $s=1/2$ spins"
 )  # replot for single label
-ax.plot(wzs / (s * G), energies_big, c="k", lw=0, marker="o", ms=8, markevery=2)
+ax.plot(wzs / (s * G), energies_big, c="k", lw=0, marker="o", markevery=2)
 ax.plot(
     wzs / (s * G),
     energies_big[:, -1],
     c="k",
     lw=0,
     marker="o",
-    ms=8,
     markevery=2,
     label=r"two $j=N/4$ spins",
 )  # replot for single label
@@ -65,8 +63,19 @@ ax.text(
     horizontalalignment="right",
     verticalalignment="top",
     transform=ax.transAxes,
+    fontsize=12,
 )
-ax.legend(loc="lower left")
+ax.text(
+    0.053,
+    0.27,
+    "(a)",
+    fontsize=16,
+    horizontalalignment="left",
+    verticalalignment="top",
+    transform=ax.transAxes,
+)
+ax.grid(ls="--", alpha=0.75)
+ax.legend(loc="lower left", fontsize=12)
 
 ax = axes[1]
 
@@ -97,14 +106,13 @@ ax.plot(wxs / (s * G), energies_small, c="k")
 ax.plot(
     wxs / (s * G), energies_small[:, -1], c="k", label="N s=1/2 spins"
 )  # replot for single label
-ax.plot(wxs / (s * G), energies_big, c="k", lw=0, marker="o", ms=8, markevery=2)
+ax.plot(wxs / (s * G), energies_big, c="k", lw=0, marker="o", markevery=2)
 ax.plot(
     wxs / (s * G),
     energies_big[:, -1],
     c="k",
     lw=0,
     marker="o",
-    ms=8,
     markevery=2,
     label="two J = N/4 spins",
 )  # replot for single label
@@ -121,7 +129,18 @@ ax.text(
     horizontalalignment="right",
     verticalalignment="top",
     transform=ax.transAxes,
+    fontsize=12,
 )
+ax.text(
+    0.053,
+    0.06,
+    "(b)",
+    fontsize=16,
+    horizontalalignment="left",
+    verticalalignment="bottom",
+    transform=ax.transAxes,
+)
+ax.grid(ls="--", alpha=0.75)
 # ax.legend()
 
 

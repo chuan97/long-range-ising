@@ -8,7 +8,7 @@ def arcoth(x):
     return np.log((x + 1) / (x - 1)) / 2
 
 
-plot.set_rcParams(size=(10, 8), lw=3, fs=20)
+plot.set_rcParams(size=(10, 8.5), lw=3, fs=20)
 fig, axes = plt.subplots(1, 1, constrained_layout=True)
 ax = axes
 # plt.axhline(0.02, c='k', lw=0.75)
@@ -37,10 +37,10 @@ for fname in alt_files:
 print(np.amin(rates), np.amax(rates))
 rates[rates > 1] = 1
 rates[rates < 0] = 0
-cm = ax.pcolormesh(J0s, Ts, rates, cmap="viridis", vmin=0, vmax=1)
+cm = ax.pcolormesh(4 * J0s, Ts, rates, cmap="viridis", vmin=0, vmax=1)
 # label = r'fit of $a$ ($\alpha_\chi = a \alpha + b ; \quad \chi_{0j} = A \cdot j^{-\alpha_\chi})$'
 label = r"$a$ (fitted from $\alpha_\chi = a \alpha + b)$"
-cbar = fig.colorbar(cm, label=label, pad=0.02, aspect=40)
+cbar = fig.colorbar(cm, pad=0.02, aspect=40)
 # cbar.ax.set_yticks(np.linspace(0.0, 1.0, 6))
 # cbar.ax.set_yticklabels(np.arange(0.0, 1.1, 0.2))
 
@@ -50,7 +50,10 @@ J0s_aux = np.linspace(0.25, 0.65, 1000)
 cmap = plt.get_cmap("viridis")
 c1, c2, c3 = cmap(np.linspace(0.1, 0.9, 3))
 ax.plot(
-    J0s_aux, 1 / (2 * arcoth(4 * J0s_aux)), c="r", label=r"analytical line $\alpha < 1$"
+    4 * J0s_aux,
+    1 / (2 * arcoth(4 * J0s_aux)),
+    c="r",
+    label=r"analytical line $\alpha < 1$",
 )
 
 # f_name = 'data/alt_new_critical-J0-of-beta_70_35_1_0.5_52_30.npz'
@@ -77,7 +80,7 @@ data_y = [
 ]
 
 plt.plot(
-    np.array(data_x) / 8,
+    4 * np.array(data_x) / 8,
     data_y,
     c="r",
     lw=0,
@@ -85,10 +88,12 @@ plt.plot(
     label=r"numerical data $\alpha = 0.05$"
 )
 
-ax.set_xlim(0.1, 0.65)
+ax.set_xlim(0.1 * 4, 0.65 * 4)
+ax.set_xticks(np.arange(0.5, 3, 0.5))
 ax.set_ylim(0.0, 1.4)
 ax.set_xlabel(r"$\Gamma / \omega_z$")
 ax.set_ylabel(r"$1/(\beta \omega_z)$")
+ax.set_title(label, pad=15)
 ax.legend(
     frameon=False,
     framealpha=0.4,
@@ -97,4 +102,4 @@ ax.legend(
     labelcolor="w",
     loc="upper center",
 )
-fig.savefig("plots/phase_diagram.jpeg", dpi=300, bbox_inches="tight")
+fig.savefig("plots/phase_diagram_thesis.jpeg", dpi=300, bbox_inches="tight")

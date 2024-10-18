@@ -8,9 +8,9 @@ from exact import (
     lanczos_ed,
 )
 
-plot.set_rcParams(size=(6.5, 8), lw=1.5, fs=14)
+plot.set_rcParams(size=(9.5, 4), lw=1.5, fs=16)
 
-fig, axes = plt.subplots(2, 1, constrained_layout=True)
+fig, axes = plt.subplots(1, 2, constrained_layout=True)
 
 m_s = 7
 m_b = 3
@@ -121,7 +121,7 @@ ax.plot(
 # ax.axhline(-G*s**2, c='k', ls='dotted', zorder=0)
 ax.set_xlabel(r"$\omega_x/(s\Gamma)$")
 ax.set_yticks(np.arange(-0.2, -0.55, -0.1))
-ax.set_ylabel(r"$E/(\Gamma N)$")
+# ax.set_ylabel(r"$E/(\Gamma N)$")
 ax.text(
     0.98,
     0.95,
@@ -144,4 +144,4 @@ ax.grid(ls="--", alpha=0.75)
 # ax.legend()
 
 
-fig.savefig(f"plots/exact_antiferro.pdf", bbox_inches="tight", dpi=300)
+fig.savefig(f"plots/exact_antiferro_thesis.pdf", bbox_inches="tight", dpi=300)

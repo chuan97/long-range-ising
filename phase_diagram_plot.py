@@ -39,7 +39,7 @@ rates[rates > 1] = 1
 rates[rates < 0] = 0
 cm = ax.pcolormesh(4 * J0s, Ts, rates, cmap="viridis", vmin=0, vmax=1)
 # label = r'fit of $a$ ($\alpha_\chi = a \alpha + b ; \quad \chi_{0j} = A \cdot j^{-\alpha_\chi})$'
-label = r"$a$ (fitted from $\alpha_\chi = a \alpha + b)$"
+label = r"$a$ from $\alpha_\chi = a \alpha + b$"
 cbar = fig.colorbar(cm, pad=0.02, aspect=40)
 # cbar.ax.set_yticks(np.linspace(0.0, 1.0, 6))
 # cbar.ax.set_yticklabels(np.arange(0.0, 1.1, 0.2))
